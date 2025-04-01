@@ -1,0 +1,38 @@
+server:
+  port: 8040
+spring:
+  data:
+    mongodb:
+      username: linh
+      password: linh
+      host: localhost
+      port: 27017
+      database: notification
+      authentication-database: admin
+  mail:
+    host: localhost
+    port: 1025
+    username: linh
+    password: linh
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enabled: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
+  kafka:
+    admin:
+      auto-create-topics: true
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: verificationGroup, forgotPasswordGroup
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+        spring.json.type.mapping: accountVerification:com.linh.ecommerce.kafka.account.AccountVerification, forgotPassword:com.linh.ecommerce.kafka.account.ForgotPassword
