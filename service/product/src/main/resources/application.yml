@@ -3,6 +3,14 @@ spring:
     import: optional:configserver:http://localhost:8888
   application:
     name: product-service
+    r2:
+      domain: shopfinity.live
+      bucket:
+        name: e-commerce-app
+      credentials:
+        access-key: 38eccd3b1be7b939a3d65e862f9905d3
+        secret-key: 24b891db5bc9ebf849977e793f16def9d3a415ed37fb3a9495d2274032553dcc
+        account-id: 58031e924d32e73cb9566edf46b51c00
 
 server:
   servlet:

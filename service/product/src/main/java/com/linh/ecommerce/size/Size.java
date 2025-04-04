@@ -10,7 +10,13 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "sizes")
+@Table(
+        name = "sizes",
+        uniqueConstraints = @UniqueConstraint(
+                name = "uk_type_value", // Tên của ràng buộc unique
+                columnNames = {"type_name", "value"} // Ràng buộc unique trên cặp cột type_name và value
+        )
+)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,11 +28,12 @@ public class Size {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
-    @Column(name = "name", nullable = false, unique = true)
-    private String name;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_name", nullable = false)
+    private SizeType type;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "value")
+    private String value;
 
     @ManyToMany(mappedBy = "sizes", fetch = FetchType.LAZY)
     private List<Product> products;

@@ -30,7 +30,7 @@ public class Product {
     private UUID storeId;
     private String name;
     private String description;
-    private BigDecimal price;
+    private String imageUrl;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
