@@ -29,10 +29,10 @@ spring:
       auto-create-topics: true
     consumer:
       bootstrap-servers: localhost:9092
-      group-id: verificationGroup, forgotPasswordGroup
+      group-id: verificationGroup, forgotPasswordGroup, orderGroup
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: '*'
-        spring.json.type.mapping: accountVerification:com.linh.ecommerce.kafka.account.AccountVerification, forgotPassword:com.linh.ecommerce.kafka.account.ForgotPassword
+        spring.json.type.mapping: accountVerification:com.linh.ecommerce.kafka.account.AccountVerification, forgotPassword:com.linh.ecommerce.kafka.account.ForgotPassword, orderConfirmation:com.linh.ecommerce.kafka.order.OrderConfirmation

@@ -10,4 +10,26 @@ spring:
         - id: customer-service
           uri: lb:http://CUSTOMER-SERVICE
           predicates:
-            - Path=/api/v1/users/**,/api/v1/auth/**
+            - Path=/api/v1/customers/**
+#          filters:
+#            - StripPrefix=2
+        - id: auth-service
+          uri: lb:http://AUTH-SERVICE
+          predicates:
+            - Path=/api/v1/accounts/**, /api/v1/auth/**
+        - id: order-service
+          uri: lb:http://ORDER-SERVICE
+          predicates:
+            - Path=/api/v1/orders/**
+        - id: order-lines-service
+          uri: lb:http://ORDER-SERVICE
+          predicates:
+            - Path=/api/v1/order-lines/**
+        - id: product-service
+          uri: lb:http://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/products/**
+        - id: payment-service
+          uri: lb:http://PAYMENT-SERVICE
+          predicates:
+            - Path=/api/v1/payments/**

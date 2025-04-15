@@ -1,6 +1,6 @@
 package com.linh.ecommerce.store;
 
-import com.linh.ecommerce.user.User;
+import com.linh.ecommerce.customer.Customer;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import jakarta.persistence.*;
@@ -22,7 +22,7 @@ public class Store {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id", nullable = false)
-    private User owner;
+    private Customer owner;
 
     @Column(name = "store_name", unique = true, nullable = false)
     private String storeName;
@@ -39,14 +39,4 @@ public class Store {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
 }

@@ -17,6 +17,10 @@ spring:
           expiration: 604800000 # 7 days
     mailing:
       frontend: http://localhost:4200/activate-account
+
+application:
+  config:
+    auth-url: http://localhost:8060/api/v1/auth
 server:
   servlet:
     context-path: /api/v1/

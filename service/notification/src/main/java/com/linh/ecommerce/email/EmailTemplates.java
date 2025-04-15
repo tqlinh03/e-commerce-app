@@ -6,8 +6,9 @@ import lombok.Getter;
 public enum EmailTemplates {
 
     ACTIVATE_ACCOUNT("activate_account.html", "Account activation"),
-    FORGOT_PASSWORD("forgot_password.html", "Forgot Password")
-
+    FORGOT_PASSWORD("forgot_password.html", "Forgot Password"),
+    PAYMENT_CONFIRMATION("payment-confirmation.html", "Payment successfully processed"),
+    ORDER_CONFIRMATION("order-confirmation.html", "Order confirmation")
     ;
 
     @Getter

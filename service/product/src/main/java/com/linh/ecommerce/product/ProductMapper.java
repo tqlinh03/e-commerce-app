@@ -10,6 +10,7 @@ import com.linh.ecommerce.size.SizeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -79,6 +80,18 @@ public class ProductMapper {
                 product.getImageUrl(),
                 categoryDTOs,
                 sizeDTOs
+        );
+    }
+
+    public ProductPurchaseResponse toProductPurchaseResponse(Product product, Inventory inventory, Integer quantity) {
+        String sizeName = inventory.getSize() != null ? inventory.getSize().getValue() : null;
+        
+        return new ProductPurchaseResponse(
+                product.getId(),
+                product.getName(),
+                sizeName,
+                inventory.getPrice(),
+                quantity
         );
     }
 } 

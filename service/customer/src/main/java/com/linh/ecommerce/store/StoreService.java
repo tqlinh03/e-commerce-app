@@ -1,16 +1,19 @@
 package com.linh.ecommerce.store;
 
-import com.linh.ecommerce.user.User;
+import com.linh.ecommerce.customer.Customer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class StoreService {
     private final StoreRepository repository;
     private final StoreMapper mapper;
+    private final StoreRepository storeRepository;
 
-    public Store createStore(StoreRequest request, User owner) {
+    public Store createStore(StoreRequest request, Customer owner) {
         validateStore(request);
         Store store = mapper.toStore(request, owner);
         return repository.save(store);
@@ -27,5 +30,11 @@ public class StoreService {
         if (repository.findByOwnerId(request.ownerId()).isPresent()) {
             throw new RuntimeException("User already owns a store");
         }
+    }
+
+    public StoreResponse findStoreByCustomerId(UUID customerId) {
+        Store store = storeRepository.findByOwnerId(customerId)
+                .orElseThrow(() -> new RuntimeException("Store not found with customer id: " + customerId));
+        return mapper.toStoreResponse(store);
     }
 }
